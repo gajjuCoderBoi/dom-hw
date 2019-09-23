@@ -11,77 +11,80 @@ document.addEventListener('DOMContentLoaded', function(event) {
   // Random quote of the day generator
   function randomQuote() {
     document.querySelector('#quote-of-the-day').textContent = `"${
-      quotes[Math.floor(Math.random() * quotes.length)]
+        quotes[Math.floor(Math.random() * quotes.length)]
     }"`;
   };
   randomQuote();
 
-
-
-  // Do all of your work below in the following functions
-  // DON'T FORGET TO CALL THE FUNCTIONS TO SEE YOUR WORK!
-
-
-// Accessing DOM Elements (Querying)
+  // Do all of your work inside the document.addEventListener
 
   // Part 1
-  // DOM's personal website title is a bit wordy. Write a JavaScript statement that selects the #main-title ID element. Change the text of the title to something shorter.
   function shortenPageTitle() {
-
+    document.querySelector('#main-title').textContent = "Hi, I'm Tom. Welcome.";
   }
+  shortenPageTitle();
 
 
   // Part 2
-  // Select the body and change the background-color to a new color of your choice.
   function changeBodyBgColor() {
-
+    document.querySelector('body').style.background = "#778ca3";
   }
+  changeBodyBgColor();
 
 
   // Part 3
-  // Select DOM's Favorite Things list and remove the last list item.
   function removeLastFavoriteThing() {
+    document.querySelector('#favorite-things').lastElementChild.remove();
+
 
   }
+  removeLastFavoriteThing();
 
 
   // Part 4
-  // Select all .special-title class elements and change their font-size to 2rem.
-  // Remember you might have to iterate through the list of elements
   function makeSpecialTitlesBigger() {
-
+    let list = document.querySelectorAll('.special-title');
+    list.forEach((element) =>{
+      element.style.fontSize = "2rem";
+    });
   }
+  makeSpecialTitlesBigger();
 
 
   // Part 5
-  // Turns out DOM never raced in Chicago. Access the Past Races list and remove Chicago.
   function RemoveChicagoRace() {
-
+    let pastRaces =  document.querySelector('#past-races').childNodes;
+    pastRaces.forEach((element) =>{
+      if(element.textContent === "Chicago")
+        element.remove();
+    });
   }
-
-
-
-// Creating New DOM Elements
-
+  RemoveChicagoRace();
   // Part 6
-  // Let's add to DOM's  Past Races  list.
-  // Create a new <li> element, change the new <li> text to the name of a city, and append it to the  Past Races  list.
   function addPastRace() {
-
+    let newElement = document.createElement("li");
+    newElement.textContent = "New York";
+    document.querySelector("#past-races").appendChild(newElement);
   }
+  addPastRace();
 
 
   // Part 7
-  // Create a new .blog-post corresponding to the new city added in Part 6.
-  // You will have to create a new <div> with class of .blog-post, a new <h2> with text, and a new <p> with some text.
-  // Think about what order you want to create the elements, and what order you want to append them in.
   function createNewBlogPost() {
+    let newPostDiv = document.createElement("div");
+    newPostDiv.setAttribute('class','blog-post');
+    newPostDiv.style.backgroundColor = "#575fcf";
+    let newPostH2 = document.createElement("h1");
+    newPostH2.textContent = "New York";
+    let newPostP = document.createElement('p');
+    newPostP.textContent = "I race Mohammad and Loss my Car... Hahahaha...";
 
+
+    newPostDiv.appendChild(newPostH2);
+    newPostDiv.appendChild(newPostP);
+
+    document.querySelector('.main').appendChild(newPostDiv);
   }
-
-
-
-
-
+  createNewBlogPost();
 
 });
